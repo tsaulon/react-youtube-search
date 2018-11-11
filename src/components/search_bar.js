@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class SearchBar extends Component{
+export default class SearchBar extends Component {
 
     constructor(props) {
         super(props);
@@ -18,10 +18,16 @@ export default class SearchBar extends Component{
     }
 
     render() {
-        return <input 
-                    type="text" 
-                    value={this.state.text} 
+        return (
+            <form>
+                <input
+                    type="text"
+                    value={this.state.text}
                     onChange={this.handleOnChange}
                 />
+            </form>
+
+        );
+
     }
 }

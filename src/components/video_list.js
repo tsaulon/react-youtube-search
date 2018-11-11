@@ -10,7 +10,7 @@ export default class VideoList extends Component {
     render() {
         return (
             <ul className="col-md-4 list-group">
-                {this.props.videos.map(x => <VideoListItem key={x.etag} video={x.snippet.channelTitle} />)}
+                {this.props.videos.map(video => <VideoListItem key={video.etag} video={video} />)}
             </ul>
         );
     }
