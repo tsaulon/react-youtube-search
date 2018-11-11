@@ -18,7 +18,11 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        YTSearch({ key: API_KEY, term: 'kotlin' }, videos => {
+        this.videoSearch('Kotlin');
+    }
+
+    videoSearch(term) {
+        YTSearch({ key: API_KEY, term: term }, videos => {
             //  set query results 'videos' to this.state.videos
             //  this.setState({ videos })
             //  is the same as
@@ -34,7 +38,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <SearchBar />
+                <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
                 <VideoDetail video={this.state.selectedVideo} />
                 <VideoList videos={this.state.videos} onVideoSelect={selectedVideo => this.setState({ selectedVideo })} />
             </div>

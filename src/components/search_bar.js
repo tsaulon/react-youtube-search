@@ -7,14 +7,11 @@ export default class SearchBar extends Component {
         this.state = {
             text: ''
         }
-
-        this.handleOnChange = this.handleOnChange.bind(this);
     }
 
-    handleOnChange(event) {
-        this.setState({
-            text: event.target.value
-        })
+    onInputChange(text) {
+        this.setState({ text })
+        this.props.onSearchTermChange(text);
     }
 
     render() {
@@ -23,7 +20,7 @@ export default class SearchBar extends Component {
                 <input
                     type="text"
                     value={this.state.text}
-                    onChange={this.handleOnChange}
+                    onChange={e => this.onInputChange(e.target.value)}
                 />
             </form>
 
