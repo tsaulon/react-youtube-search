@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
@@ -36,9 +37,14 @@ class App extends React.Component {
     }
 
     render() {
+
+        //  stops component from rendering at every keystroke
+        //  renders new keystrokes after 300 milliseconds
+        const videoSearch = _.debounce(term => this.videoSearch(term), 300);
+
         return (
             <div>
-                <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+                <SearchBar onSearchTermChange={videoSearch} />
                 <VideoDetail video={this.state.selectedVideo} />
                 <VideoList videos={this.state.videos} onVideoSelect={selectedVideo => this.setState({ selectedVideo })} />
             </div>
