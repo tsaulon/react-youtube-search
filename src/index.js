@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
 import YTSearch from 'youtube-api-search';
 
 const API_KEY = 'AIzaSyBVs3cSICyW6O6LfG93ZtLU7eoL3Uwizdc';
@@ -12,7 +13,9 @@ class App extends React.Component {
         this.state = {
             videos: []
         }
+    }
 
+    componentDidMount() {
         YTSearch({key: API_KEY, term: 'kotlin'}, videos => {
             //  set query results 'videos' to this.state.videos
             //  this.setState({ videos })
@@ -27,9 +30,11 @@ class App extends React.Component {
         return (
             <div>
                 <SearchBar />
+                <VideoList videos={this.state.videos}/>
             </div>
         )
     }
 }
+
 ReactDOM.render(<App />, document.querySelector('.container'));
 
