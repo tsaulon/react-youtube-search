@@ -12,18 +12,22 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            videos: []
+            videos: [],
+            selectedVideo: null
         }
     }
 
     componentDidMount() {
-        YTSearch({key: API_KEY, term: 'kotlin'}, videos => {
+        YTSearch({ key: API_KEY, term: 'kotlin' }, videos => {
             //  set query results 'videos' to this.state.videos
             //  this.setState({ videos })
             //  is the same as
             //  this.setState({ videos: data })
             //  Condition: response variable name must be the same as state property name.
-            this.setState({ videos });
+            this.setState({
+                videos: videos,
+                selectedVideo: videos[0]
+            });
         })
     }
 
@@ -31,8 +35,8 @@ class App extends React.Component {
         return (
             <div>
                 <SearchBar />
-                <VideoList videos={this.state.videos}/>
-                <VideoDetail video={this.state.videos[0]} />
+                <VideoDetail video={this.state.selectedVideo} />
+                <VideoList videos={this.state.videos} onVideoSelect={selectedVideo => this.setState({ selectedVideo })} />
             </div>
         )
     }

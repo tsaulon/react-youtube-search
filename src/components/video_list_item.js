@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default function VideoListItem(props) {
+export default function VideoListItem({video, onVideoSelect}) {
 
-    const imageUrl = props.video.snippet.thumbnails.default.url;
-    const title = props.video.snippet.title;
+    const imageUrl = video.snippet.thumbnails.default.url;
+    const title = video.snippet.title;
 
     return (
-        <li className="list-group-item">
+        <li onClick={() => onVideoSelect(video)} className="list-group-item">
             <div className="video-list media">
                 <div className="media-left">
                     <img src={imageUrl} className="media-object" />

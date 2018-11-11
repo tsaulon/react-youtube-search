@@ -19,7 +19,7 @@ export default class SearchBar extends Component {
 
     render() {
         return (
-            <form>
+            <form className="search-bar">
                 <input
                     type="text"
                     value={this.state.text}
